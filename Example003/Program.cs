@@ -10,7 +10,7 @@
 => [505, 252.5, 0, 363 ]
 */
 
-void FillArray(int [,] collection)
+void FillArray(int [,] collection) //Функция заполнения массива
 {
 Random rand = new Random();
     for (int i = 0; i < collection.GetLength(0) ; i++)
@@ -22,7 +22,7 @@ Random rand = new Random();
     }
 } 
 
-void PrintArray(int [,] collection)
+void PrintArray(int [,] collection) //Функция печати массива
 {
     for (int i = 0; i < collection.GetLength(0); i++)
     {
@@ -33,18 +33,25 @@ void PrintArray(int [,] collection)
         Console.WriteLine();
     }
 }
-
+/*
+Если нужно проверить исходный массив:
+int[,] Array = new int[3,4] {{100,404,504,225},
+                             {550,478,800,363},
+                             {505,101,410,479}};
+*/
 int[,] Array = new int[3,4];
 FillArray(Array);
 PrintArray(Array);
 
 
-int CheckPalindrome(int[,] collection, int i, int j)
+int CheckPalindrome(int[,] collection, int i, int j) //Функция проверки числа из массива
 {
     int[] arr = new int[3];
+    int z = collection[i,j];
     for(int index = 0; index < arr.Length; index++)
     {
-        arr[index] = collection[i,j] % 10;
+        arr[index] = z % 10;
+        z = z / 10;
     }
     if(arr[0] == arr[arr.Length-1])
     {
@@ -56,13 +63,13 @@ int CheckPalindrome(int[,] collection, int i, int j)
     }
 }
 
-for(int j = 0; j < Array.GetLength(1); j++)
+for(int j = 0; j < Array.GetLength(1); j++) // Перебераю числа в массиве
 {
     double result = 0;
     int count = 1;
     for(int i = 0; i < Array.GetLength(0); i++)
     {
-        if(CheckPalindrome(Array, i, j) != 0)
+        if(CheckPalindrome(Array, i, j) != 0) // Вызываю функцию проверки числа на условия
         {
             result = (result + Array[i,j]) / count;
             count++;
@@ -72,5 +79,6 @@ for(int j = 0; j < Array.GetLength(1); j++)
             continue;
         }
     }
-    Console.WriteLine(result + " ");
+    Console.WriteLine();
+    Console.Write(result);
 }
