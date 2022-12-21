@@ -20,7 +20,7 @@ Random rand = new Random();
     {
         for(int j = 0; j < collection.GetLength(1); j++)
         {
-        collection[i,j] = rand.Next(1000)/100.0;
+        collection[i,j] = rand.Next(-1000,1000)/100.0;
         }
     }
 } 
